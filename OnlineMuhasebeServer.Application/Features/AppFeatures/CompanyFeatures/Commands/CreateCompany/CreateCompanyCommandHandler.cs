@@ -20,7 +20,7 @@ public sealed class CreateCompanyCommandHandler : ICommandHandler<CreateCompanyC
         if(company is not null)
             throw new Exception("Bu sirket adi zaten mevcut.");
 
-        await _companyService.CreateCompany(request);
+        await _companyService.CreateCompany(request, cancellationToken);
         return new();
     }
 }

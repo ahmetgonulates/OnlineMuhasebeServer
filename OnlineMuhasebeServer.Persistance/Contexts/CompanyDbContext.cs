@@ -13,7 +13,7 @@ public sealed class CompanyDbContext : DbContext
     {
         if (company != null)
         {
-            if (company.UserId == "")
+            if (company.ServerUserId == "")
                 ConnectionString = 
                     $"Server={company.ServerName};" +
                     $"Database={company.DatabaseName};" +
@@ -25,8 +25,8 @@ public sealed class CompanyDbContext : DbContext
                 ConnectionString =
                     $"Server={company.ServerName};" +
                     $"Database={company.DatabaseName};" +
-                    $"User Id={company.UserId};" +
-                    $"Password={company.Password};" +
+                    $"User Id={company.ServerUserId};" +
+                    $"Password={company.ServerPassword};" +
                     $"Trusted_Connection=True;" +
                     $"Encrypt=false;" +
                     $"Integrated Security=false;" +

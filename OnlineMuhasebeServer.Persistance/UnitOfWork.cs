@@ -18,9 +18,9 @@ namespace OnlineMuhasebeServer.Persistance
             _context = (CompanyDbContext)context;
         }
 
-        public async Task<int> SaveChangesAsync()
+        public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
-            int rowCount = await _context.SaveChangesAsync();
+            int rowCount = await _context.SaveChangesAsync(cancellationToken);
             return rowCount;
         }
     }

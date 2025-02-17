@@ -13,9 +13,9 @@ public class CompaniesController : ApiController
     }
 
     [HttpPost("[action]")]
-    public async Task<IActionResult> CreateCompany([FromBody] CreateCompanyCommand request)
+    public async Task<IActionResult> CreateCompany([FromBody] CreateCompanyCommand request, CancellationToken cancellationToken)
     {
-        var response = await _mediator.Send(request);
+        var response = await _mediator.Send(request, cancellationToken);
         return Ok(response);
     }
 

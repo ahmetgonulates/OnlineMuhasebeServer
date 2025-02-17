@@ -24,14 +24,14 @@ public class CommandRepository<T> : ICommandRepository<T> where T : Entity
         DbSet = _context.Set<T>();
     }
 
-    public async Task AddAsync(T entity)
+    public async Task AddAsync(T entity, CancellationToken cancellationToken)
     {
-        await DbSet.AddAsync(entity);
+        await DbSet.AddAsync(entity, cancellationToken);
     }
 
-    public async Task AddRangeAsync(IEnumerable<T> entities)
+    public async Task AddRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken)
     {
-        await DbSet.AddRangeAsync(entities);
+        await DbSet.AddRangeAsync(entities, cancellationToken);
     }
 
     public void Remove(T entity)

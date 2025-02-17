@@ -15,7 +15,11 @@ namespace OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures
 
         public async Task<CreateUCAFCommandResponse> Handle(CreateUCAFCommand request, CancellationToken cancellationToken)
         {
-            await _ucafService.CreateUcafAsync(request);
+            var ucaf = await _ucafService.GetByCode(request.Code);
+            if (ucaf is not null)
+                throw new Exception("Bu kayit mevcut.");
+
+            await _ucafService.CreateUcafAsync(request, cancellationToken);
             return new();
         }
     }

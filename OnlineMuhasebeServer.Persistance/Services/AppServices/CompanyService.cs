@@ -18,12 +18,12 @@ public class CompanyService : ICompanyService
         _mapper = mapper;
     }
 
-    public async Task CreateCompany(CreateCompanyCommand request)
+    public async Task CreateCompany(CreateCompanyCommand request, CancellationToken cancellationToken)
     {
         Company company = _mapper.Map<Company>(request);
         company.Id = Guid.CreateVersion7().ToString();
-        await _context.Set<Company>().AddAsync(company);
-        await _context.SaveChangesAsync();
+        await _context.Set<Company>().AddAsync(company, cancellationToken);
+        await _context.SaveChangesAsync(cancellationToken);
     }
 
     public async Task<Company?> GetCompanyByName(string name)
@@ -34,7 +34,7 @@ public class CompanyService : ICompanyService
     public async Task MigrateCompanyDatabases()
     {
         var companies = await _context.Set<Company>().ToListAsync();
-        foreach(var company in companies)
+        foreach (var company in companies)
         {
             var db = new CompanyDbContext(company);
             db.Database.Migrate();
