@@ -13,14 +13,14 @@ public class CompaniesController : ApiController
     }
 
     [HttpPost("[action]")]
-    public async Task<IActionResult> CreateCompany([FromBody] CreateCompanyCommandRequest request)
+    public async Task<IActionResult> CreateCompany([FromBody] CreateCompanyCommand request)
     {
         var response = await _mediator.Send(request);
         return Ok(response);
     }
 
     [HttpGet("[action]")]
-    public async Task<IActionResult> MigrateCompanyDatabases([FromQuery] MigrateCompanyDatabaseRequest request)
+    public async Task<IActionResult> MigrateCompanyDatabases([FromQuery] MigrateCompanyDatabaseCommand request)
     {
         var response = await _mediator.Send(request);
         return Ok(response);

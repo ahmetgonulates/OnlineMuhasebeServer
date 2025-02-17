@@ -21,28 +21,28 @@ namespace OnlineMuhasebeServer.Presentation.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> CreateRole([FromBody] CreateRoleRequest request)
+        public async Task<IActionResult> CreateRole([FromBody] CreateRoleCommand request)
         {
             var response = await _mediator.Send(request);
             return Ok(response);
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllRoles([FromQuery] GetAllRolesRequest request)
+        public async Task<IActionResult> GetAllRoles([FromQuery] GetAllRolesQuery request)
         {
             var response = await _mediator.Send(request);
             return Ok(response);
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateAsync([FromBody] UpdateRoleRequest request)
+        public async Task<IActionResult> UpdateAsync([FromBody] UpdateRoleCommand request)
         {
             var response = await _mediator.Send(request);
             return Ok(response);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsync([FromRoute] DeleteRoleRequest request)
+        public async Task<IActionResult> DeleteAsync([FromRoute] DeleteRoleCommand request)
         {
             var repsonse = await _mediator.Send(request);
             return Ok(Response);

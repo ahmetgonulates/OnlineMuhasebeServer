@@ -17,7 +17,7 @@ namespace OnlineMuhasebeServer.Presentation.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> Login([FromBody] LoginCommandRequest request)
+        public async Task<IActionResult> Login([FromBody] LoginCommand request)
         {
             var response = await _mediator.Send(request);
             return Ok(response);
